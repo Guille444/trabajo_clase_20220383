@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, Dimensions, TextInput, ActivityIndicator } from 'react-native';
 import axios from 'axios';
+import FormularioPokemon from '../components/FormularioPokemon';
 
 const WIDTH = Dimensions.get('window').width;
 const numColumns = 3;
@@ -42,15 +43,13 @@ export default function PokemonAxios() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>List of Pokémon</Text>
-      <View>
-        <Text>Ingrese el numero de pokemones a cargar:</Text>
-        <TextInput
-          placeholder='5'
-          onChangeText={setNPokemon}
-          value={nPokemon.toString()}
-        />
-      </View>
+      <FormularioPokemon
+        tituloFormulario='Listado de Pokemones usando Fetch'
+        labelInput='Ingrese la cantidad de pokemon a cargar: '
+        placeHolderInput='20'
+        valor={nPokemon}
+        setValor={setNPokemon}
+      />
       {loading ? (
         <ActivityIndicator style={styles.loading} size="large" color="#0000ff" />
       ) : (
